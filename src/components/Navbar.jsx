@@ -1,8 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import userIcon from "../assets/user.png"
 import { FaBars } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+    const {user, userLogOut} = useContext(AuthContext)
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
@@ -21,6 +24,12 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
+                <div>
+                    {
+                        user && <h2>{user.email}</h2>
+                    }
+                    
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1  font-bold">
@@ -31,7 +40,10 @@ const Navbar = () => {
                 <div>
                     <img className="rounded-full" src={userIcon} alt="" />
                 </div>
-                <Link to="/auth/login" className="btn bg-neutral text-white rounded-none px-6 py-1 ">Login</Link>
+                {
+                    user && user?.email ? <button onClick={userLogOut}>Log Out</button>: <Link to="/auth/login" className="btn bg-neutral text-white rounded-none px-6 py-1 ">Login</Link>
+                }
+                
             </div>
         </div>
     );
