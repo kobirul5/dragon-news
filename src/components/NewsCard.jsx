@@ -2,6 +2,7 @@
 import { FaShareAlt, FaEye } from 'react-icons/fa';
 import { AiFillStar } from 'react-icons/ai';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const NewsCard = ({ data } = {}) => {
   const {
@@ -11,6 +12,7 @@ const NewsCard = ({ data } = {}) => {
     rating,
     total_view,
     details,
+    _id
   } = data || {};
 
 
@@ -47,9 +49,9 @@ const NewsCard = ({ data } = {}) => {
       <div className="px-4 py-3">
         <p className="text-gray-700 mb-3">
           {details.slice(0, 100)}...
-          <span className="text-blue-500 cursor-pointer font-semibold hover:underline">
+          <Link to={`/news/${_id}`} className="text-blue-500 cursor-pointer font-semibold hover:underline">
             Read More
-          </span>
+          </Link>
         </p>
       </div>
 
