@@ -1,10 +1,16 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 
 const Login = () => {
-    const {user, setUser, userLogIn} = useContext(AuthContext)
+    const {setUser, userLogIn} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const [error, setError] = useState()
+    
+
+    console.log(location)
     const handleLogin = (e) =>{
         e.preventDefault()
         const form = new FormData(e.target)
@@ -14,15 +20,13 @@ const Login = () => {
         userLogIn(email, password)
         .then((result) => {
             setUser(result.user)
-            console.log(result)
+            navigate(location?.state ? location.state: "/")
         })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+        .catch((err) => {
+            const errorMessage = err.message;
+            setError(errorMessage)
           });
     }
-    console.log(user)
     return (
         <div className="hero">
             <div className="card bg-base-100 rounded-none w-full max-w-lg shrink-0  p-10">
@@ -40,6 +44,12 @@ const Login = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                        <label className="label">
+                            {
+                                error &&<p className="text-red-500">{error}</p>
+                            }
+                            
+                        </label>
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                         </label>

@@ -22,7 +22,7 @@ const NewsDetails = () => {
                                     alt={news?.title}
                                     className="w-full" />
                             </figure>
-                            <div className="card-body p-5 space-y-5">
+                            <div className="card-body p-5 space-y-6">
                                 <h2 className="card-title mt-5">{news?.title}</h2>
                                 <p>{news?.details}</p>
                                 <div className="card-actions">
