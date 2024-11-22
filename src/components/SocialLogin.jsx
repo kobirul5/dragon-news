@@ -1,4 +1,4 @@
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 
 const SocialLogin = () => {
     return (
@@ -10,6 +10,9 @@ const SocialLogin = () => {
                 </button>
                 <button className="btn">
                     <FaGithub></FaGithub> Login With Github
+                </button>
+                <button className="btn">
+                    <FaFacebook></FaFacebook> Login With Facebook
                 </button>
             </div>
         </div>
