@@ -27,7 +27,7 @@ const NewsCard = ({ data } = {}) => {
           className="w-10 h-10 rounded-full object-cover "
         />
         <div className="ml-3">
-          <h3 className="font-semibold text-gray-800">{author.name}</h3>
+          <h3 className="font-semibold text-gray-800">Name:- {author.name}</h3>
           <p className="text-sm text-gray-500">{author.published_date}</p>
         </div>
         <FaShareAlt className="ml-auto text-gray-600 cursor-pointer hover:text-gray-800 transition duration-150" />
